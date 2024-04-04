@@ -23,7 +23,10 @@ $resultbool = false;
             $mickael = ['Mickaël Andrieu', 'mickael.andrieu@exemple.com', 'S3cr3t', 34];
             $mathieu = ['Mathieu Nebra', 'mathieu.nebra@exemple.com', 'devine', 33];
             $laurene = ['Laurène Castor', 'laurene.castor@exemple.com', 'P4ssw0rD', 28];
-            
+            $recipes = [
+                ['Cassoulet','[...]','mickael.andrieu@exemple.com',true,],
+                ['Couscous','[...]','mickael.andrieu@exemple.com',false,],
+            ];
             $users = [$mickael, $mathieu, $laurene];
             
             while ($user = current($users)) {
@@ -40,6 +43,25 @@ $resultbool = false;
                     echo '<li>' . $users[$i][$j] . '</li>';
                 }
                 echo '</ul>';
+            }
+            ?>
+            <p>Affiche des recettes de cuisine</p>
+            <!-- <ul><?php for ($i = 0; $i < count($recipes); $i++) ?>
+                <li><?php echo $recipes;    ?></li>
+            </ul> -->
+            <p>Affiche les recttes de cuisines en fonction de la fonction is enabled</p>
+            <?php
+            $isAllowed = allowRecipe([
+                'title' => 'Escalope milanaise',
+                'recipe' => '',
+                'author' => 'mathieu.nebra@exemple.com',
+                'is_enabled' => true,
+            ]);
+            
+            if ($isAllowed) {
+                echo 'La recette doit être affichée !';
+            } else {
+                echo 'La recette doit être cachée !';
             }
             ?>
     </body>
